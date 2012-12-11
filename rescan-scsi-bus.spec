@@ -33,3 +33,10 @@ install %{name} %buildroot%{_sbindir}
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/rescan-scsi-bus
+
+
+%changelog
+* Tue Feb 14 2012 Alexander Khrukin <akhrukin@mandriva.org> 1.56-1
++ Revision: 773933
+- imported package rescan-scsi-bus
+
