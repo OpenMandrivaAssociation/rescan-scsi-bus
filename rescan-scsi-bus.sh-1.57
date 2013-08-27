@@ -3,7 +3,7 @@
 # scsi add-single-device mechanism
 # (c) 1998--2010 Kurt Garloff <kurt@garloff.de>, GNU GPL v2 or v3
 # (c) 2006--2008 Hannes Reinecke, GNU GPL v2 or later
-# $Id: rescan-scsi-bus.sh,v 1.56 2012/01/14 22:23:53 garloff Exp $
+# $Id: rescan-scsi-bus.sh,v 1.57 2012/03/31 14:08:48 garloff Exp $
 
 SCAN_WILD_CARD=4294967295
 
@@ -232,7 +232,7 @@ testonline ()
     print_and_scroll_back "$host:$channel:$id:$lun $SGDEV ($RMB) "
   fi
   while test $RC = 2 -o $RC = 6 && test $ctr -le 8; do
-    if test $RC = 2 -a "$RMB" != "1"; then echo -n "."; let $LN+=1; sleep 1
+    if test $RC = 2 -a "$RMB" != "1"; then echo -n "."; let LN+=1; sleep 1
     else usleep 20000; fi
     let ctr+=1
     sg_turs /dev/$SGDEV >/dev/null 2>&1
@@ -623,7 +623,11 @@ modprobe sg >/dev/null 2>&1
 
 if test -x /usr/bin/sg_inq; then
     sg_version=$(sg_inq -V 2>&1 | cut -d " " -f 3)
-    sg_version=${sg_version##0.}
+    if test -n "$sg_version"; then
+	sg_ver_maj=${sg_version:0:1}
+	sg_version=${sg_version##?.}
+	let sg_version+=$((100*$sg_ver_maj))
+    fi
     #echo "\"$sg_version\""
     if [ -z "$sg_version" -o "$sg_version" -lt 70 ] ; then
         sg_len_arg="-36"
