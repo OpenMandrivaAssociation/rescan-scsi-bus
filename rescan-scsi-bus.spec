@@ -1,7 +1,7 @@
 Summary:	Rescan SCSI bus in Linux
 Name:		rescan-scsi-bus
 Version:	1.57
-Release:	1
+Release:	2
 License:	GPL
 Group:		System/Kernel and hardware 
 Source0:	http://www.garloff.de/kurt/linux/%{name}.sh-%{version}
