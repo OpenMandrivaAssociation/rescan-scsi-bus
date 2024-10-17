@@ -5,7 +5,7 @@ Release:	2
 License:	GPL
 Group:		System/Kernel and hardware 
 Source0:	http://www.garloff.de/kurt/linux/%{name}.sh-%{version}
-URL:		http://www.garloff.de/kurt/linux/
+URL:		https://www.garloff.de/kurt/linux/
 BuildArch:	noarch
 
 %description
